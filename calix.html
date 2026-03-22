@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>CALIX · Scientific Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Exo+2:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="calix.css"/>
+</head>
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg-scene">
+  <div class="grid-h"></div>
+  <div class="grid-v"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="particles">
+    <span class="p1"></span><span class="p2"></span><span class="p3"></span><span class="p4"></span><span class="p5"></span>
+    <span class="p6"></span><span class="p7"></span><span class="p8"></span><span class="p9"></span><span class="p10"></span>
+    <span class="p11"></span><span class="p12"></span><span class="p13"></span><span class="p14"></span><span class="p15"></span>
+    <span class="p16"></span><span class="p17"></span><span class="p18"></span><span class="p19"></span><span class="p20"></span>
+    <span class="p21"></span><span class="p22"></span><span class="p23"></span><span class="p24"></span><span class="p25"></span>
+    <span class="p26"></span><span class="p27"></span><span class="p28"></span><span class="p29"></span><span class="p30"></span>
+  </div>
+  <div class="ring-wrap">
+    <div class="ring r1"></div>
+    <div class="ring r2"></div>
+    <div class="ring r3"></div>
+  </div>
+</div>
+
+<!-- DOOR -->
+<div class="door-scene" id="doorScene">
+  <div class="wall"></div>
+  <div class="door-frame" id="doorFrame">
+    <div class="knock-ripple" id="kr"></div>
+    <div class="door" id="door">
+      <div class="door-face">
+        <div class="dp dp-tl"></div><div class="dp dp-tr"></div>
+        <div class="dp dp-bl"></div><div class="dp dp-br"></div>
+        <div class="dknob"><div class="dknob-inner"></div></div>
+        <div class="door-title">CALIX</div>
+        <div class="door-sub">SCIENTIFIC · PRO</div>
+        <div class="door-sign">⬡ &nbsp; KNOCK TO ENTER &nbsp; ⬡</div>
+      </div>
+      <div class="door-edge"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CALCULATOR -->
+<div class="calc-wrap hidden" id="calcWrap">
+  <div class="calc-card">
+
+    <div class="hdr">
+      <div class="hdr-left">
+        <span class="brand">CALIX</span>
+        <span class="ver">SCI · PRO</span>
+      </div>
+      <div class="hdr-right">
+        <div class="pill">
+          <button class="pill-btn" id="btnBasic">BASIC</button>
+          <button class="pill-btn active" id="btnSci">SCI</button>
+        </div>
+        <div class="pill">
+          <button class="pill-btn active" id="btnDeg">DEG</button>
+          <button class="pill-btn" id="btnRad">RAD</button>
+        </div>
+        <button class="close-btn" id="closeBtn">✕</button>
+      </div>
+    </div>
+
+    <div class="disp" id="dispEl">
+      <div class="d-hist" id="hist">&nbsp;</div>
+      <div class="d-prev" id="prev">&nbsp;</div>
+      <div id="screen">0</div>
+    </div>
+
+    <!-- Scientific Panel -->
+    <div class="sci-panel" id="sciPanel">
+      <button class="btn s-fn" data-a="sin">sin</button>
+      <button class="btn s-fn" data-a="cos">cos</button>
+      <button class="btn s-fn" data-a="tan">tan</button>
+      <button class="btn s-fn" data-a="log">log</button>
+      <button class="btn s-fn" data-a="ln">ln</button>
+      <button class="btn s-fn" data-a="sqrt">√x</button>
+
+      <button class="btn s-fn" data-a="pow2">x²</button>
+      <button class="btn s-fn" data-a="pow3">x³</button>
+      <button class="btn s-fn" data-a="powN">xʸ</button>
+      <button class="btn s-fn" data-a="inv">1/x</button>
+      <button class="btn s-fn" data-a="pi">π</button>
+      <button class="btn s-fn" data-a="euler">e</button>
+
+      <button class="btn s-fn" data-a="abs">|x|</button>
+      <button class="btn s-fn" data-a="fact">n!</button>
+      <button class="btn s-fn" data-a="open">(</button>
+      <button class="btn s-fn" data-a="close">)</button>
+      <button class="btn s-fn" data-a="floor">⌊x⌋</button>
+      <button class="btn s-fn" data-a="ceil">⌈x⌉</button>
+    </div>
+
+    <!-- Main Keypad — strict 4 cols -->
+    <div class="keypad">
+      <button class="btn fn"  data-a="ac">AC</button>
+      <button class="btn fn"  data-a="del">⌫</button>
+      <button class="btn fn"  data-a="pct">%</button>
+      <button class="btn op"  data-a="÷">÷</button>
+
+      <button class="btn num" data-a="7">7</button>
+      <button class="btn num" data-a="8">8</button>
+      <button class="btn num" data-a="9">9</button>
+      <button class="btn op"  data-a="×">×</button>
+
+      <button class="btn num" data-a="4">4</button>
+      <button class="btn num" data-a="5">5</button>
+      <button class="btn num" data-a="6">6</button>
+      <button class="btn op"  data-a="−">−</button>
+
+      <button class="btn num" data-a="1">1</button>
+      <button class="btn num" data-a="2">2</button>
+      <button class="btn num" data-a="3">3</button>
+      <button class="btn op"  data-a="+">+</button>
+
+      <button class="btn num" data-a="00">00</button>
+      <button class="btn num" data-a="0">0</button>
+      <button class="btn num" data-a=".">.</button>
+      <button class="btn eq"  data-a="=">=</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="calix.js"></script>
+</body>
+</html>
